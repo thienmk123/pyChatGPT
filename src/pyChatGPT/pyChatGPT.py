@@ -439,11 +439,17 @@ class ChatGPT:
             if 'text-red' in response.get_attribute('class'):
                 self.logger.debug('Response is an error')
                 raise ValueError(response.text)
-        response = self.driver.find_elements(*chatgpt_small_response)[-1]
 
-        content = markdownify(response.get_attribute('innerHTML')).replace(
-            'Copy code`', '`'
-        )
+        temp = self.driver.find_elements(*chatgpt_small_response)
+
+        if len(temp) == 0:
+            content = "Xin lỗi, quá trình nhận response bị lỗi, bạn vui lòng thử lại xem ^_^"
+        
+        else:
+            response = temp[-1]
+            content = markdownify(response.get_attribute('innerHTML')).replace(
+                'Copy code`', '`'
+            )
         pattern = re.compile(
             r'[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}'
         )
