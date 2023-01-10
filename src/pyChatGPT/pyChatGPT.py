@@ -175,6 +175,7 @@ class ChatGPT:
         options = uc.ChromeOptions()
         options.add_argument('--window-size=1024,768')
         options.add_argument('--no-sandbox')  
+        options.add_argument('--disable-dev-shm-usage')  
         if self.__proxy:
             options.add_argument(f'--proxy-server={self.__proxy}')
         for arg in self.__chrome_args:
