@@ -225,7 +225,7 @@ class ChatGPT:
         self.__check_blocking_elements()
 
         self.__is_active = True
-        Thread(target=self.__keep_alive, daemon=True).start()
+        Thread(target=self.__keep_alive, daemon=False).start()
 
     def __ensure_cf(self, retry: int = 3) -> None:
         '''
