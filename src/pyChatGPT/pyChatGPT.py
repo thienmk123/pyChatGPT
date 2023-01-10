@@ -174,6 +174,7 @@ class ChatGPT:
         self.logger.debug('Initializing browser...')
         options = uc.ChromeOptions()
         options.add_argument('--window-size=1024,768')
+        options.add_argument('--no-sandbox')  
         if self.__proxy:
             options.add_argument(f'--proxy-server={self.__proxy}')
         for arg in self.__chrome_args:
